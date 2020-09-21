@@ -1,7 +1,7 @@
 # Toy Tales
 
 You've got a friend in need! Again!
-Andy has misplaced of his toys (again) and need your help to organize them.
+Andy has misplaced all of his toys (again) and need your help to organize them.
 
 For this lab, you will not be expected to `fetch` Andy's toy from a database. All the information about Andy's toys can be found in the 'db.json' file, which you will need to fire up, using the following command in your terminal:
 
