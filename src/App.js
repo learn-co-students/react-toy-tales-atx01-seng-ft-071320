@@ -8,10 +8,15 @@ import ToyContainer from './components/ToyContainer'
 import data from './data'
 
 
-class App extends React.Component{
+class App extends React.Component {
 
   state = {
-    display: false
+    display: false,
+    toys: []
+  }
+
+  componentDidMount() {
+    this.setState({ toys: data })
   }
 
   handleClick = () => {
@@ -21,20 +26,39 @@ class App extends React.Component{
     })
   }
 
-  render(){
+
+  addToy = (toy) => {
+    this.setState({
+      toys: [...this.state.toys, toy]
+    })
+  }
+
+  deleteToy = (e) => {
+    // console.log(e.target.id)
+    // const filteredItems = items.filter(item => item !== valueToRemove)
+    let filteredToys = this.state.toys.filter(toy => toy.id !== e.target.id)
+    console.log(filteredToys)
+    this.setState({
+      toys: this.state.toys.filter(toy => toy.id !== e.target.id)
+    })
+  }
+
+
+
+  render() {
     return (
       <>
-        <Header/>
+        <Header />
         { this.state.display
-            ?
-          <ToyForm/>
-            :
+          ?
+          <ToyForm addToy={this.addToy} />
+          :
           null
         }
         <div className="buttonContainer">
           <button onClick={this.handleClick}> Add a Toy </button>
         </div>
-        <ToyContainer/>
+        <ToyContainer deleteToy={this.deleteToy} toys={this.state.toys} />
       </>
     );
   }
@@ -42,3 +66,8 @@ class App extends React.Component{
 }
 
 export default App;
+
+
+
+
+// future-self reminder: Couldn't get delete and like buttons to work 
