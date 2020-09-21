@@ -2,10 +2,20 @@ import React, { Component } from 'react';
 
 class ToyForm extends Component {
 
+  submitToy = (e) => {
+    e.preventDefault()
+    const newToy = {
+      "name": e.target.name.value,
+      "image": e.target.image.value,
+      "likes": 0
+    }
+    this.props.addToy(newToy)
+  }
+
   render() {
     return (
       <div className="container">
-        <form className="add-toy-form">
+        <form className="add-toy-form" onSubmit={this.submitToy}>
           <h3>Create a toy!</h3>
           <input type="text" name="name" placeholder="Enter a toy's name..." className="input-text"/>
           <br/>
